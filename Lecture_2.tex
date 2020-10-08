@@ -1,0 +1,2534 @@
+
+\input{preamb.tex}
+
+
+
+
+
+\title{Учебник по Эконометрике}
+
+\subtitle
+{Лекция 2: Линейная Алгебра и Матрицы}
+
+\author{Джон Стачурски \\ \vspace{.5em} 
+	\scriptsize Лекции: Акшай Шенкер \\ \vspace{.1em} 
+	\scriptsize Перевел: Алексей Кедо}
+
+
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Матрицы и Линейные уравнения}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \frametitle{Матрицы}
+
+    Обычная \navy{$N \times K$ матрица}: 
+    
+    \begin{equation*}
+        \boldA = 
+        \left(
+        \begin{array}{cccc}
+            a_{11} & a_{12} & \cdots & a_{1K} \\
+            a_{21} & a_{22} & \cdots & a_{2K} \\
+            \vdots & \vdots &  & \vdots \\
+            a_{N1} & a_{N2} & \cdots & a_{NK} 
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+    
+    \vspace{.7em}
+    Символ $a_{nk}$ означает элемент, стоящий в $n$-ой строке $k$-ого столбца
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    $N \times K$ матрица также называется 
+    %
+    \begin{itemize}
+        \item \navy{вектором строки}, если $N = 1$
+        \item \navy{вектором столбца}, если $K = 1$
+    \end{itemize}
+    
+    \vspace{.7em}
+    Если $N = K$, то матрицу $\boldA$ называют \navy{квадратной}
+    
+    Если $\boldA$ квадратная и $a_{nk} = a_{kn}$ для любых $k$ и $n$, то $\boldA$
+    называют \navy{симметричной}   
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Часто элементы матрицы $\boldA$ представляют собой коэффициенты 
+    в системе линейных уравнений
+    %
+    \begin{equation*}
+        \label{eq:sleq}
+        \begin{array}{c}
+            a_{11} x_1 + a_{12} x_2 + \cdots + a_{1K} x_K = b_1 \\
+            \vdots  \\
+            a_{N1} x_1 + a_{N2} x_2 + \cdots + a_{NK} x_K = b_N 
+        \end{array}
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Для матрицы $\boldA$ применяются обозначения:
+    \begin{itemize}
+        \item $\row_n \boldA$ означает
+    $n$-ую строку $\boldA$
+        \item $\col_k \boldA$ означает $k$-ый столбец $\boldA$
+    \end{itemize} 
+    
+    \vspace{.7em}
+    Символы $\boldzero$ и $\boldone$ представляют собой матрицы, 
+    все элементы которых равны нулю и единице соответственно
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Для квадратной матрицы $\boldA$, элементы $a_{nn}$ называют \navy{главной диагональю}:
+    %
+    \begin{equation*}
+        \left(
+        \begin{array}{cccc}
+            \red{a_{11}} & a_{12} & \cdots & a_{1N} \\
+            a_{21} & \red{a_{22}} & \cdots & a_{2N} \\
+            \vdots & \vdots &  & \vdots \\
+            a_{N1} & a_{N2} & \cdots & \red{a_{NN}} \\
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+    \navy{Единичная матрица}:
+    %
+    \begin{equation*}
+        \boldI := 
+        \left(
+        \begin{array}{cccc}
+            1 & 0 & \cdots & 0 \\
+            0 & 1 & \cdots & 0 \\
+            \vdots & \vdots &  & \vdots \\
+            0 & 0 & \cdots & 1 \\
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+    Заметим, что $\col_n \boldI = \bolde_n$ --- $n$-ый канонический базис $\RR^N$
+    
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Алгебраические операции над матрицами}
+
+    \vspace{2em}
+    Операции над матрицами:
+    
+    \begin{itemize}
+        \item Умножение на скаляр 
+        \item Сложение
+        \item Умножение матриц
+    \end{itemize}
+    
+    \vspace{.7em}
+    Умножение на скаляр выполняется поэлементно, как с векторами:
+    %
+    \begin{equation*}
+        \gamma 
+        \left(
+        \begin{array}{cccc}
+            a_{11} & a_{12} & \cdots & a_{1K} \\
+            a_{21} & a_{22} & \cdots & a_{2K} \\
+            \vdots & \vdots &  & \vdots \\
+            a_{N1} & a_{N2} & \cdots & a_{NK} \\
+        \end{array}
+        \right)
+        :=
+        \left(
+        \begin{array}{cccc}
+            \gamma a_{11} & \gamma a_{12} & \cdots & \gamma a_{1K} \\
+            \gamma a_{21} & \gamma a_{22} & \cdots & \gamma a_{2K} \\
+            \vdots & \vdots &  & \vdots \\
+            \gamma a_{N1} & \gamma a_{N2} & \cdots & \gamma a_{NK} \\
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Сложение тоже выполняется поэлементно:
+    %
+    \begin{multline*}
+        \left(
+        \begin{array}{ccc}
+            a_{11} & \cdots & a_{1K} \\
+            a_{21} & \cdots & a_{2K} \\
+            \vdots & \vdots & \vdots \\
+            a_{N1} & \cdots & a_{NK} \\
+        \end{array}
+        \right)
+        +
+        \left(
+        \begin{array}{ccc}
+            b_{11} & \cdots & b_{1K} \\
+            b_{21} & \cdots & b_{2K} \\
+            \vdots & \vdots & \vdots \\
+            b_{N1} & \cdots & b_{NK} \\
+        \end{array}
+        \right)
+        \\
+        :=
+        \left(
+        \begin{array}{ccc}
+            a_{11} + b_{11} &  \cdots & a_{1K} + b_{1K} \\
+            a_{21} + b_{21} &  \cdots & a_{2K} + b_{2K} \\
+            \vdots & \vdots & \vdots \\
+            a_{N1} + b_{N1} &  \cdots & a_{NK} + b_{NK} \\
+        \end{array}
+        \right)
+    \end{multline*}
+    %
+
+    Заметим, что матрицы должны быть одинакового размера
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Умножение матриц:  
+    
+    \vspace{.7em}
+    Произведение $\boldA \boldB$: 
+    $i,j$-ый элемент --- скалярное умножение $i$-ой строки $\boldA$ и 
+    $j$-ого столбца $\boldB$  
+    
+    \begin{equation*}
+    c_{ij} = \inner{\row_i \boldA,\,  \col_j  \boldB} = \sum_{k=1}^K a_{ik} b_{kj}
+    \end{equation*}
+    %
+\end{frame}
+
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    Для $i=j=1$:
+    %
+    \small\begin{equation*}
+        \left(
+        \begin{array}{ccc}
+            \red{a_{11}} & \red{\cdots} & \red{a_{1K}} \\
+            a_{21} & \cdots & a_{2K} \\
+            \vdots & \vdots & \vdots \\
+            a_{N1} & \cdots & a_{NK} \\
+        \end{array}
+        \right)
+        \left(
+        \begin{array}{ccc}
+            \red{b_{11}} & \cdots & b_{1J} \\
+            \red{b_{21}} & \cdots & b_{2J} \\
+            \red{\vdots} & \vdots & \vdots \\
+            \red{b_{K1}} & \cdots & b_{KJ} \\
+        \end{array}
+        \right)
+        =
+        \left(
+        \begin{array}{ccc}
+            \red{c_{11}} & \cdots & c_{1J} \\
+            c_{21} & \cdots & c_{2J} \\
+            \vdots & \vdots & \vdots \\
+            c_{N1} & \cdots & c_{NJ} \\
+        \end{array}
+        \right)
+    \end{equation*}
+    
+    \vspace{1em}
+    Здесь 
+    %
+    \begin{equation*}
+        c_{11} = \inner{\row_1(\boldA) , \col_1 (\boldB)} = \sum_{k=1}^K a_{1k} b_{k1}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Предположим, что размер $\boldA$ --- $N \times K$, $\boldB$ --- $J \times M$
+    
+    \begin{itemize}
+        \item $\boldA \boldB$ определена, только если $K = J$
+        \item Размер $\boldA \boldB$ --- $N \times M$
+    \end{itemize}
+    
+    \vspace{.7em}
+    Запомните правило:
+    %
+    \begin{equation*}
+        \text{Произведение } N \times K \text{ и } K \times M
+        \text{ равно }  N \times M
+    \end{equation*}
+    %
+
+    Умножение не коммутативно: $\boldA \boldB \not= \boldB \boldA$ 
+    
+    Заметим, что произведение $\boldB \boldA$ определено, только если $N = M$ соблюдается 
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:bmari}}
+        Для согласованных матриц $\boldA$, $\boldB$, $\boldC$ и скаляра $\alpha$, верно
+        %
+        \begin{enumerate}
+            \item $\boldA (\boldB \boldC) = (\boldA \boldB) \boldC$,
+            \item $\boldA (\boldB + \boldC) = \boldA \boldB + \boldA \boldC$,
+            \item $(\boldA + \boldB) \boldC = \boldA \boldC + \boldB \boldC$,
+            \item $\boldA \alpha \boldB = \alpha \boldA \boldB$, и
+            \item $\boldA \boldI = \boldA$ и $\boldI \boldA = \boldA$, где
+                $\boldI$ --- единичная матрица.
+        \end{enumerate}
+    
+    Здесь ``согласованость'' значит, что операция определена 
+    при заданных размерностях матриц
+
+\end{frame}
+
+
+\begin{frame}
+
+    \vspace{2em}
+    \navy{$k$-ая мощность} квадратной матрицы $\boldA$ определяется как
+    %    
+    \begin{equation*}
+        \boldA^k := \underbrace{\boldA \cdots \boldA}_{k \text{ terms}} 
+    \end{equation*}
+    
+    \vspace{.7em}
+    Если матрица $\boldB$ такая, что $\boldB^2 = \boldA$, то $\boldB$
+    называется \navy{квадратным корнем} матрицы $\boldA$ и записывается как $\sqrt{\boldA}$
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Возьмем матрицу $\boldA$ размерности $N \times K$ и $K \times 1$ вектор
+    столбца $\boldx$, перемножение $\boldA \boldx$:
+    %
+    \begin{align*}
+        \boldA \boldx
+        & = 
+        \left(
+        \begin{array}{cccc}
+            a_{11} & a_{12} & \cdots & a_{1K} \\
+            a_{21} & a_{22} & \cdots & a_{2K} \\
+            \vdots & \vdots &  & \vdots \\
+            a_{N1} & a_{N2} & \cdots & a_{NK} 
+        \end{array}
+        \right)
+        \left(
+        \begin{array}{c}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_K
+        \end{array}
+        \right)
+        \\
+        & =
+        x_1 \left(
+        \begin{array}{c}
+            a_{11} \\
+            a_{21} \\
+            \vdots \\
+            a_{N1} 
+        \end{array}
+        \right)
+        +
+        x_2 \left(
+        \begin{array}{c}
+            a_{12} \\
+            a_{22} \\
+            \vdots \\
+            a_{N2} 
+        \end{array}
+        \right)
+        + \cdots + 
+        x_K \left(
+        \begin{array}{c}
+            a_{1K} \\
+            a_{2K} \\
+            \vdots \\
+            a_{NK} 
+        \end{array}
+        \right)
+        \\
+        & = 
+        \sum_{k=1}^K x_k \col_k \boldA
+    \end{align*}
+%
+\end{frame}
+
+\begin{frame}\frametitle{Матрицы как отображения}
+
+    \vspace{2em}
+    Можно размышлять о матрице $\boldA$ размерна $N\times K$ как об отображении из 	
+    $\mathbb{R}^{K}$ в $\mathbb{R}^{N}$:
+    \[
+        \boldx \mapsto \boldA\boldx 
+    \]
+    
+    Такое отображение линейно
+    
+    \vspace{.7em}
+    Как насчет примеров линейных функций, не использующих матрицы? 
+    
+    ...на самом деле, таких не существует! 
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{.7em}
+    Множеству линейных функций из $\RR^K$ в
+    $\RR^N$ инъективно соответствует множество матриц $N \times K$:
+    
+    \vspace{.7em}
+    \Thm{\eqref{ET-t:lmaeq}}
+    Пусть $T$ является функцией из $\RR^K$ в $\RR^N$. Следующее эквивалентно:
+    %
+    \begin{enumerate}
+        \item $T$ линейна.
+        \item Существует матрица $\boldA$ размера $N \times K$, такая что 
+        $T\boldx = \boldA \boldx$ для всех $\boldx \in \RR^K$.
+    \end{enumerate}
+    %
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Prf (1. $\implies$ 2.)
+    
+    Пусть $T \colon \RR^K \to \RR^N$ линейна
+    
+    Мы собираемся построить матрицу $\boldA$ размерности $N \times K$, такую что
+    %
+    $$ T\boldx = \boldA \boldx, \qquad \forall \, \boldx \in \RR^K $$
+    %
+    Как обычно, пусть
+    $\bolde_k$ --- $k$-ый канонический базисный вектор в $\RR^K$
+    
+    Определим матрицу $\boldA$ как $\col_k(\boldA) = T\bolde_k$. Возьмем любой 
+    $\boldx = (x_1, \ldots, x_K) \in \RR^K$. По линейности, получается
+    %
+    \begin{equation*}
+        T\boldx 
+        = T \left[\sum_{k=1}^K x_k \bolde_k \right]
+        = \sum_{k=1}^K x_k T \bolde_k
+        = \sum_{k=1}^K x_k \col_k(\boldA)
+        = \boldA \boldx
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Prf (2 $\implies$ 1)
+    %
+    Возьмем матрицу $\boldA$ размера $N \times K$ и пусть $T$ определяется
+    \begin{equation*}
+        T \colon \RR^K \to \RR^N, 
+        \qquad
+        T\boldx = \boldA \boldx
+    \end{equation*}
+
+    Возьмем любые $\boldx$, $\boldy$ в $\RR^K$, и любые скаляры $\alpha$ и $\beta$
+     
+    \vspace{.7em} 
+    Правила матричной арифметики говорят нам, что
+    %
+    \begin{equation*}
+        T(\alpha \boldx + \beta \boldy) 
+        := \boldA (\alpha \boldx + \beta \boldy)
+        = \alpha \boldA \boldx  + \beta \boldA \boldy
+        =: \alpha T\boldx + \beta T\boldy 
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Рассмотрим возможность решения системы линейных уравнений, например, 
+    $\boldA \boldx = \boldb$
+    
+    \vspace{.7em}
+    Существование: можем ли мы найти $\boldx$, удовлетворяющий уравнению при любых
+    заданных $\boldb$?  
+    \begin{itemize}
+        \item является ли линейное отображение $T\boldx = \boldA \boldx$ сюръекцией? 
+        \item эквивалентно, равен ли $\range T$ всему $\RR^N$?
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}\frametitle{Пространство столбцов}
+
+    \vspace{2em}
+    Диапазон $T$ --- все вектора вида
+    $T\boldx = \boldA \boldx$, где $\boldx$ варьируется в $\RR^K$
+    
+    Для $\boldx \in \RR^K$ получается
+    \[\boldA \boldx = \sum_{k=1}^K x_k \col_k \boldA\]
+    
+    \vspace{.7em}
+    Таким образом, $\range T$ равен \navy{пространству столбцов} $\boldA$ --- 
+    линейная оболочка столбцов $\boldA$
+    \begin{equation*}
+    \label{eq:secolsp}
+    \colspace \boldA := \Span \{ \col_1 \boldA, \ldots, \col_K \boldA \}
+    \end{equation*}
+    %
+    В итоге, 
+    \begin{equation*}
+        \colspace \boldA = \range T = \setntn{\boldA \boldx}{ \boldx \in \RR^K}
+    \end{equation*}
+    
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ранг}
+
+    \vspace{2em}
+    Эквивалентные вопросы
+    %
+    \begin{itemize}
+        \item Насколько велик диапазон линейного отображения $T \boldx = \boldA \boldx$?
+        \item Насколько велико пространство столбцов $\boldA$?
+    \end{itemize}
+
+    \vspace{1em}
+
+    Очевидной мерой размера линейного подпространства является его размерность
+    
+    Размерность $\colspace \boldA$ известна как \navy{ранг} $\boldA$  
+    %
+    \begin{equation*}
+        \rank \boldA := \dim \colspace \boldA
+    \end{equation*}
+    %
+
+    Так как $\colspace \boldA$ --- линейная оболочка $K$ векторов, получается
+    %
+    \begin{equation*}
+        \rank \boldA = \dimension \colspace \boldA \leq K
+    \end{equation*}
+
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    $\boldA$ имеет \navy{полный ранг системы столбцов}, если 
+    %
+    \begin{equation*}
+        \rank \boldA = \text{ количество столбцов } \boldA
+    \end{equation*}
+
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:frie}} Для любой матрицы $\boldA$, следующие утверждения 
+    эквивалентны:
+    %
+    \begin{enumerate}
+        \item $\boldA$ является полным рангом системы столбцов
+            \vspace{0.3em} 
+        \item Столбцы $\boldA$ линейно независимы
+            \vspace{0.3em} 
+        \item Если $\boldA \boldx = \boldzero$, то $\boldx = \boldzero$
+    \end{enumerate}
+    %
+
+\end{frame}
+
+\begin{frame}\frametitle{Квадратные матрицы и обратимость}
+
+    \vspace{2em}
+    Рассмотрим случай с матрицей $\boldA$ размера $N \times N$ 
+   
+   \vspace{.7em}
+    Мы ищем условия, при которых для каждого $\boldb \in \RR^N$,
+    существует только один $\boldx \in \RR^N$, такой что $\boldA \boldx = \boldb$
+    
+    \vspace{.7em}
+    Пусть $T$ является линейным отображением $T \boldx = \boldA \boldx$
+    \begin{itemize}
+        \item Когда каждая точка $\boldb \in \RR^N$ 
+        имеет только один прообраз в $T$?
+        \item Эквивалентно, когда $T$ --- биекция?
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Напомним, линейные биекции называются несингулярными функциями.
+
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:exinv}}
+        Для матрицы $\boldA$ размера $N \times N$ следующее эквивалентно:
+        %
+        \begin{enumerate}
+            \item Столбцы $\boldA$ линейно независимы.
+            \item Столбцы $\boldA$ формируют базис $\RR^N$.
+            \item $\rank \boldA = N$.
+            \item $\colspace \boldA = \RR^N$.
+            \item $\boldA \boldx = \boldA \boldy \; \implies \; \boldx = \boldy$.
+            \item $\boldA \boldx = \boldzero \; \implies \; \boldx = \boldzero$.
+            \item Для каждого $\boldb \in \RR^N$, уравнение $\boldA \boldx = \boldb$
+                имеется решение.
+            \item Для каждого $\boldb \in \RR^N$, уравнение $\boldA \boldx = \boldb$
+                имеет единственное решение.
+        \end{enumerate}
+
+\end{frame}
+  
+
+\begin{frame}
+
+    \vspace{2em}
+    Если любое из эквивалентных условий
+    факта~\ref{ET-fa:exinv} верное, мы назовем \navy{несингулярной} не только 
+    отображение $T$, но и основную матрицу $\boldA$ 
+    
+    \vspace{.7em}
+    Если хоть одно --- и, следовательно, все --- из этих условий не выполняются, то $\boldA$ называется \navy{сингулярной}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Любая биекция имеет обратную функцию (смотрите \S\ref{ET-ss:functions} в ET)
+    
+    \vspace{.7em}
+    Любое несингулярное отображение $T$ имеет несингулярное обратное $T^{-1}$ 
+    (факт~\ref{ET-fa:nsins} на странице~\pageref{ET-fa:nsins})
+    
+    \begin{itemize}
+        \item если $T$ создано матрицей $\boldA$, обратное $T^{-1}$ также связано 
+        с матрицей, называемой обратной $\boldA$ 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}    
+    \Thm{\eqref{ET-t:nonsigmat}}
+        Для несингулярной $\boldA$ следующие утверждения верны:
+        %
+        \begin{enumerate}
+            \item Существует квадратная матрица $\boldB$, такая что $\boldA
+                \boldB = \boldB \boldA = \boldI$, где $\boldI$ ---
+                единичная матрица. Матрица $\boldB$ называется \navy{обратной}
+                $\boldA$, и записывается как $\boldA^{-1}$.
+            \item Для каждого $\boldb \in \RR^N$, единственное
+            решение задачи $\boldA \boldx =
+                \boldb$ записывается как 
+                    %
+                    \begin{equation*}
+                        \label{eq:sofox}
+                        \boldx = \boldA^{-1} \boldb
+                    \end{equation*}
+                    %
+        \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Eg
+    Расстмотрим линейный спрос для $N$ товаров
+    %
+    \begin{equation*}
+        q_n = \sum_{k=1}^N a_{nk} p_k + b_n,
+        \quad n = 1, \ldots, N
+    \end{equation*}
+    %
+    где $q_n$ и $p_n$ --- количество и цена $n$-ого товара
+    
+    \vspace{.7em}
+    Мы хотим вычислить обратную функцию спроса, 
+    которая показывает зависимость цены от количества
+    
+    \vspace{.7em}
+    Записшем систему в матричной форме: $\boldq = \boldA \boldp + \boldb$
+    
+    Если столбцы $\boldA$ линейно независимы, то 
+    система обратима --- единственное решение существует для
+    любых фиксированных $\boldq$ и $\boldb$:
+    %
+    \[\boldp = \boldA^{-1} (\boldq - \boldb)\]
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{.7em}    
+    Для матриц $\boldA$ и $\boldB$ размера $N\times N$, если
+    
+    \begin{itemize}
+        \item $\boldB$ является
+        \navy{левой обратной}, в том смысле, что $\boldB \boldA = \boldI$ 
+        \item  или $\boldB$ является \navy{правой обратной}, в том смысле, 
+        что $\boldA \boldB = \boldI$ 
+    \end{itemize}
+
+    \vspace{.7em}    
+    Тогда $\boldA$ обратима и $\boldB$ является обратной матрицей $\boldA$
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:lrinv}}
+    Пусть $\boldA$ и $\boldB$ --- квадратные матрицы размера $N \times N$.
+    Если $\boldB$ является левой или правой обратной матрицы $\boldA$,
+    то $\boldA$ несингулярна и $\boldB$ --- ее обратная матрица.
+ 
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:bpiv}}
+    Если $\boldA$ и $\boldB$ несингулярны и $\alpha \not= 0$, то
+    %
+    \begin{enumerate}
+        \item $(\boldA^{-1})^{-1} = \boldA$,
+        \item $(\alpha \boldA)^{-1} = \alpha^{-1} \boldA^{-1}$, и 
+        \item $(\boldA \boldB)^{-1} = \boldB^{-1} \boldA^{-1}$
+    \end{enumerate}
+    
+\end{frame}
+
+\begin{frame}\frametitle{Определитель}
+
+    \vspace{.7em}
+    Определитель --- уникальное число для любой квадратной матрицы $\boldA$
+    
+    Пусть $S(N)$ является множеством
+    всех биекций из $\{1, \ldots, N\}$ в саму себя
+    
+    \vspace{.7em}
+    Для $\pi \in S(N)$ определим \navy{функцию знака} $\pi$ 
+    %
+    \begin{equation*}
+        \sgn(\pi) := \prod_{m < n} \frac{\pi(m) - \pi(n)}{m - n}
+    \end{equation*}
+    
+    \vspace{1em}
+    \navy{Определитель} матрицы $\boldA$ размера $N \times N$ --- это
+    
+    \begin{equation*}
+        \det \boldA 
+        := \sum_{\pi \in S(N)} \sgn(\pi) \prod_{n=1}^N a_{\pi(n) n}
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{.7em}
+    \Fact
+    \eqref{ET-fa:detfacts}
+    Если $\boldI$ --- единичная матрица размера $N \times N$, 
+    $\boldA$ и $\boldB$ являются марицами размера $N \times N$ и 
+    $\alpha \in \RR$, то
+    %
+    \begin{enumerate}
+        \item $\det \boldI = 1$,
+        \item $\boldA$ несингулярна тогда и только тогда, когда $\det \boldA
+            \not= 0$,
+        \item $\det(\boldA\boldB) = \det(\boldA) \det(\boldB)$,
+        \item $\det(\alpha \boldA) = \alpha^N \det(\boldA)$, и
+        \item $\det(\boldA^{-1}) = (\det(\boldA))^{-1}$.
+    \end{enumerate}
+    
+    \vspace{.7em}
+    В случае матрицы размера $2 \times 2$ можно показать, что
+    %
+    \begin{equation*}
+        \label{eq:det22}
+        \det 
+        \left(
+        \begin{array}{cc}
+            a & b  \\
+            c & d  \\
+        \end{array}
+        \right)
+        = ad - bc
+    \end{equation*}
+    
+\end{frame}
+
+
+\begin{frame}
+
+    \vspace{2em}
+    \Prf (Факт \ref{ET-fa:lrinv})
+    
+    Возьмем кважратную матрицу $\boldA$ и предположим, что
+    правая обратная матрица $\boldB$ существует: \[\boldA \boldB = \boldI\]
+    
+    Тогда обе матрицы $\boldA$ и $\boldB$ несингулярны, так как по правилам
+    факта~\ref{ET-fa:detfacts}: \[\det(\boldA) \det(\boldB) = 1\]
+    
+    Оба определителя $\det \boldA$ и $\det \boldB$ ненулевые и, следовательно, обе
+    матрицы несингулярные. Далее, $\boldA \boldB = \boldI$, значит 
+    %
+    \[\boldB \boldA \boldB = \boldB\]
+    %
+    Умножим на $\boldB^{-1}$, получается $\boldB \boldA = \boldI$
+    
+\end{frame}
+
+\section{Свойства Матриц}
+
+\begin{frame}\frametitle{Диагональные и треугольные матрицы}
+    
+    \vspace{2em}
+    Квадратная матрица назвается \navy{нижней треугольной}, если каждый элемент 
+    строго выше главной диагонали равен нулю
+    
+    \vspace{.7em}
+    \Eg
+    %
+    \begin{equation*}
+        \label{eq:ltute}
+        \boldL :=
+        \left(
+        \begin{array}{ccc}
+            1 & 0 & 0  \\
+            2 & 5 & 0 \\
+            3 & 6 & 1
+        \end{array}
+        \right)
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Квадратная матрица назвается \navy{верхней треугольной}, если каждый элемент 
+    строго ниже главной диагонали равен нулю
+
+    \vspace{.7em}
+    \Eg
+    %
+    \begin{equation*}
+        \boldU :=
+        \left(
+        \begin{array}{ccc}
+            1 & 2 & 3  \\
+            0 & 5 & 6 \\
+            0 & 0 & 1
+        \end{array}
+        \right)
+    \end{equation*}
+    
+    \vspace{.7em}
+    Квадратная матрица назвается \navy{треугольной}, если она верхняя или 
+    нижняя треугольная
+
+    \vspace{.7em}
+    \Fact\eqref{ET-fa:dtmat}
+    Если $\boldA = (a_{mn})$ треугольная, то $\det \boldA = \prod_{n=1}^N a_{nn}$.
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Связанные линейные уравнения просто решить 
+
+  \vspace{0.7em}
+
+    \Eg
+    % 
+    \begin{equation*}
+        \left(
+        \begin{array}{ccc}
+            1 & 0 & 0  \\
+            2 & 5 & 0 \\
+            3 & 6 & 1
+        \end{array}
+        \right)
+        \left(
+        \begin{array}{ccc}
+            x_1 \\
+            x_2 \\
+            x_3 
+        \end{array}
+        \right)
+        =
+        \left(
+        \begin{array}{c}
+            b_1 \\
+            b_2 \\
+            b_3 \\
+        \end{array}
+        \right)
+    \end{equation*}
+    
+    становится
+
+    \begin{equation*}
+        \begin{array}{c}
+            x_1  = b_1  \\
+            2x_1 + 5x_2 = b_2 \\
+            3x_1 + 6x_2 + x_3 = b_3
+        \end{array}
+    \end{equation*}
+    %
+
+    Верхнее уравнение включает только $x_1$, так что его можно решить напрямую
+
+    Подставьте это значение во второе уравнение и решите для $x_2$ и т.д.
+
+\end{frame}
+
+
+\begin{frame}
+
+    \vspace{2em}
+    Рассмотрим квадратную матрицу $\boldA$ размера $N \times N$ 
+
+    \vspace{1em}
+
+    $N$ элементов $a_{nn}$ называются \navy{главной диагональю}
+
+    \vspace{1em}
+    \begin{equation*}
+        \left(
+        \begin{array}{cccc}
+            \red{a_{11}} & a_{12} & \cdots & a_{1N} \\
+            a_{21} & \red{a_{22}} & \cdots & a_{2N} \\
+            \vdots & \vdots &  & \vdots \\
+            a_{N1} & a_{N2} & \cdots & \red{a_{NN}} \\
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    Квадратная матрица $\boldD$ называется \navy{диагональной}, если все значения вне
+    главной диагонали равны нулю
+
+    \begin{equation*}
+        \boldD = 
+        \left(
+        \begin{array}{cccc}
+            d_1 & 0 & \cdots & 0 \\
+            0 & d_2 & \cdots & 0 \\
+            \vdots & \vdots &  & \vdots \\
+            0 & 0 & \cdots & d_N \\
+        \end{array}
+        \right)
+    \end{equation*}
+
+    \vspace{1em}
+
+    Часто записывается как
+    
+    \begin{equation*}
+        \boldD = \diag(d_1, \ldots, d_N) 
+    \end{equation*}
+
+\end{frame}
+
+
+
+\begin{frame}
+    
+    \vspace{2em}
+    Диагональные системы очень легко решить
+
+    \vspace{0.5em}
+
+    \Eg
+
+    \begin{equation*}
+        \begin{pmatrix}
+            d_1 & 0  & 0 \\
+            0 & d_2 & 0 \\
+            0 & 0 & d_3 
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1  \\
+            x_2  \\
+            x_3 
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            b_1  \\
+            b_2  \\
+            b_3 
+        \end{pmatrix}
+    \end{equation*}
+
+    эквивалентно
+
+    \begin{equation*}
+        \begin{array}{c}
+            d_1 x_1  = b_1  \\
+            d_2x_2 = b_2 \\
+            d_3 x_3 = b_3
+        \end{array}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact\eqref{ET-fa:powdm} Если $\boldC = \diag(c_1, \ldots, c_N)$ и 
+    $\boldD = \diag(d_1, \ldots, d_N)$, то
+    %
+    \begin{enumerate}
+        \item $\boldC + \boldD = \diag(c_1 + d_1, \ldots, c_N + d_N)$
+            \vspace{0.4em}
+        \item $\boldC \boldD = \diag(c_1 d_1, \ldots, c_N d_N)$
+            \vspace{0.4em}
+        \item $\boldD^k = \diag(d^k_1, \ldots, d^k_N)$ для любых $k \in \NN$
+            \vspace{0.4em}
+        \item $d_n \geq 0$ для всех $n$ $\implies$ $\boldD^{1/2}$ существует и равняется
+            %
+            $$\diag(\sqrt{d_1}, \ldots, \sqrt{d_N})$$
+            \vspace{-1.5em}
+        \item $d_n \not= 0$ для всех $n$ $\implies$ $\boldD$ несингулярна и 
+            %
+            $$\boldD^{-1} = \diag(d_1^{-1}, \ldots, d_N^{-1})$$
+    \end{enumerate}
+    %
+
+    Доказательства: Проверьте 1 и 2 напрямую. Части 3-5 следуют из 1 и 2. 
+
+\end{frame}
+
+
+\begin{frame}\frametitle{След, транспонирование, симметрия}
+    
+    \navy{След} матрицы определяется как 
+    %
+    \vspace{0.5em}
+    \begin{equation*}
+        \trace \left(
+        \begin{array}{ccc}
+            a_{11} &  \cdots & a_{1N} \\
+            \vdots & &  \vdots \\
+            a_{N1} &  \cdots & a_{NN} \\
+        \end{array}
+        \right)
+        = 
+        \sum_{n=1}^N a_{nn}
+    \end{equation*}
+    %
+
+    \vspace{0.5em}
+
+    \vspace{0.5em}
+
+    \Fact{\eqref{ET-fa:lmpt}} Если $\boldA$ и $\boldB$ являются квадратными матрицами и
+    $\alpha, \beta \in \RR$, то 
+    %
+    \begin{equation*}
+        \trace(\alpha \boldA + \beta \boldB) 
+        = \alpha \trace(\boldA) + \beta \trace(\boldB)
+    \end{equation*}
+    %
+
+    \vspace{0.5em}
+    Если 
+    $\boldA$ размера $N \times M$ и $\boldB$ размера $M \times N$, то 
+    $\trace(\boldA \boldB) = \trace(\boldB \boldA)$
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \navy{Транспонирование} превращает матрицу $\boldA$ размера $N \times K$ в 
+    матрицу $\boldA^\T$ размера $K \times N$, определяемую как
+    $$\col_n(\boldA') = \row_n(\boldA)$$
+
+    \Eg Если
+    %
+    \begin{equation*}
+        \label{eq:aиb}
+        \boldA := 
+        \left(
+        \begin{array}{cc}
+            10 & 40  \\
+            20 & 50  \\
+            30 & 60
+        \end{array}
+        \right)
+        \quad \text{, то} \quad
+        \boldA' = 
+        \left(
+        \begin{array}{ccc}
+            10 & 20 & 30 \\
+            40 & 50 & 60 
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+    Если
+    %
+    \begin{equation*}
+        \boldB := 
+        \left(
+        \begin{array}{ccc}
+            1 & 3 & 5 \\
+            2 & 4 & 6 \\
+        \end{array}
+        \right)
+        \quad \text{, то} \quad
+        \boldB' := 
+        \left(
+        \begin{array}{cc}
+            1 & 2  \\
+            3 & 4  \\
+            5 & 6 
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Квадратная матрица $\boldA$ называется \navy{симметричной}, если $\boldA^\T = \boldA$
+    \begin{itemize}
+        \item эквивалентно, $a_{nk} = a_{kn}$ для всех $k$ и $n$
+    \end{itemize}
+    
+    \vspace{.7em}
+    Матрицы $\boldA^\T \boldA$ и $\boldA \boldA^\T$ всегда корректно определены 
+    и симметричны
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:owtra}}
+    Для согласующихся матриц $\boldA$ и $\boldB$ транспонирование удовлетворяет
+    %
+    \begin{enumerate}
+        \item $(\boldA^\T)^\T = \boldA$,
+        \item $(\boldA \boldB)^\T = \boldB^\T \boldA^\T$,
+        \item $(\boldA + \boldB)^\T = \boldA^\T +  \boldB^\T$, и
+        \item $(c \boldA)^\T = c \boldA^\T$ для любых постоянных $c$.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:owtra2}}
+        Для любой квадратной матрицы $\boldA$, верно 
+        %
+        \begin{enumerate}
+            \item $\trace(\boldA) = \trace(\boldA^\T)$ и
+            \item $\det(\boldA^\T) = \det(\boldA)$.
+            \item Если $\boldA$ несингулярна, то $\boldA^\T$ тоже несингулярна, и
+                $(\boldA^\T)^{-1}= (\boldA^{-1})^\T$.
+        \end{enumerate}
+        
+    \vspace{.7em}
+    Если $\bolda$ и $\boldb$ --- векторы размера $N \times 1$, умножение матриц 
+    $\bolda^\T \boldb = \boldb^\T \bolda$ равняется $\sum_{n=1}^N a_n b_n$,
+    
+    \begin{itemize}
+        \item так же, как скалярное произведение $\inner{\bolda, \boldb}$
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+    \frametitle{Собственные значения и собственные векторы}
+
+    \vspace{2em}
+    Возьмем матрицу $\boldA$ размера $N \times N$  
+    
+    Обычно $\boldA$ отображает $\boldx$ в какое-то произвольное новое место $\boldA \boldx$
+
+    Но иногда $\boldx$ будет только \underline{масштабироваться}:
+    %
+    \begin{equation}
+        \label{eq:eiei}
+        \boldA \boldx = \lambda \boldx
+        \quad \text{для некоторого скаляра $\lambda$}
+    \end{equation}
+    
+    \vspace{.7em}
+    Если \eqref{eq:eiei} выполняется и $\boldx$ is ненулевой, то 
+    %
+    \begin{enumerate}
+        \item $\boldx$ называется \navy{собственным вектором} $\boldA$
+            и $\lambda$ называется \navy{собственным значением}
+            \vspace{0.3em}
+        \item $(\boldx, \lambda)$ называется \navy{собственной парой}
+    \end{enumerate}
+
+    Ясно, что $(\boldx, \lambda)$ --- собственная пара $\boldA$ $\implies$
+    $(\alpha \boldx, \lambda)$ --- собственная пара
+    $\boldA$ для любых ненулевых $\alpha$
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Eg Пусть
+    %
+    $$
+    \boldA :=
+    \begin{pmatrix}
+        1 & -1 \\
+        3 & 5
+    \end{pmatrix}
+    $$
+
+    Тогда
+    
+    $$
+    \lambda = 2 
+    \quad \text{ и } \quad
+    \boldx
+    =
+    \begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}
+    $$
+
+    формируют собственную пару, потому что $\boldx \not= \boldzero$ и
+
+    $$
+    \boldA \boldx =
+    \begin{pmatrix}
+        1 & -1 \\
+        3 & 5
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        2 \\
+        -2
+    \end{pmatrix}
+    = 2
+    \begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}
+    =
+    \lambda \boldx 
+    $$
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Eg Рассмотрим матрицу 
+    %
+    \begin{equation*}
+        \boldR := 
+        \left(
+        \begin{array}{cc}
+            0 & -1  \\
+            1 & 0  \\
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+
+    Вызывает вращение против часовой стрелки в любой точке на $90^{\circ}$
+
+    Значит ни одна точка $\boldx$ не масштабируется
+    
+    Значит \underline{не} существует пары 
+    $\lambda \in \RR$ и $\boldx \not= \boldzero$
+    , такой что
+    %
+    $$\boldR \boldx = \lambda \boldx$$  
+    %
+    
+    \begin{itemize}
+        \item Другими словами, не существует \underline{вещественных} собственных пар
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \begin{figure}
+       \begin{center}
+        \scalebox{.4}{\includegraphics{rotation_1.pdf}}
+        \caption{Матрица $\boldR$ поворачивает точки на $90^{\circ}$}
+       \end{center}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \
+    \vspace{2em}
+    \begin{figure}
+       \begin{center}
+        \scalebox{.4}{\includegraphics{rotation_2.pdf}}
+        \caption{Матрица $\boldR$ поворачивает точки на $90^{\circ}$}
+       \end{center}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Но $\boldR \boldx = \lambda \boldx$ может выполняться, \underline{если} мы 
+    допускаем комплексные числа
+
+    \vspace{1em}
+
+    \Eg 
+    %
+    \begin{equation*}
+        \left(
+        \begin{array}{cc}
+            0 & -1  \\
+            1 & 0  \\
+        \end{array}
+        \right)
+        \begin{pmatrix}
+            1 \\
+            -i
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            i \\
+            1
+        \end{pmatrix}
+        =
+        i
+        \begin{pmatrix}
+            1 \\
+            -i
+        \end{pmatrix}
+    \end{equation*}
+
+    \vspace{.7em}
+    То есть
+    %
+    \begin{equation*}
+        \boldR \boldx = \lambda \boldx
+        \quad \text{для} \quad
+        \lambda := i
+        \quad \text{и} \quad
+        \boldx := 
+        \begin{pmatrix}
+            1 \\
+            -i
+        \end{pmatrix}
+    \end{equation*}
+
+
+    Тогда $(\boldx, \lambda)$ является собственной парой при условии, 
+    что мы допускаем комплексные числа 
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:chei}} для любой квадратной матрицы $\boldA$ 
+    %
+    \begin{equation*}
+        \lambda \text{ является собственным значением } \boldA \; \iff \;
+        \det(\boldA - \lambda \boldI) = 0
+    \end{equation*}
+    %
+
+    \vspace{1em}
+
+    \Prf  Пусть $\boldA$ --- матрица размера $N \times N$ и $\boldI$ --- единичная 
+    матрица размера $N \times N$
+
+    Получается
+    %
+    \begin{align*}
+        \det(\boldA - \lambda \boldI) = 0
+        & \iff \boldA - \lambda \boldI \text{ сингулярно}
+        \\
+        & \iff \exists \, \boldx \not= \boldzero \st
+            (\boldA - \lambda \boldI) \boldx = \boldzero
+        \\
+        & \iff \exists \, \boldx \not= \boldzero \st
+        \boldA \boldx = \lambda \boldx
+        \\
+        & \iff \lambda 
+        \text{ является собственным значением } \boldA
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Eg В случае матрицы $2 \times 2$,
+    %
+    \begin{equation*}
+        \boldA =
+        \left(
+        \begin{array}{cc}
+            a & b  \\
+            c & d  \\
+        \end{array}
+        \right)
+        \quad \implies \quad
+        \boldA - \lambda \boldI =
+        \left(
+        \begin{array}{cc}
+            a - \lambda & b  \\
+            c & d - \lambda 
+        \end{array}
+        \right)
+    \end{equation*}
+    %
+    \begin{align*}
+        \fore
+    \det(\boldA - \lambda \boldI) 
+    & = (a - \lambda)(d - \lambda) - bc
+    \\
+    & = \lambda^2 - (a + d) \lambda + (ad - bc)
+    \end{align*}
+    
+    Значит собственные значения $\boldA$ являются двумя корнями уравнения 
+    %
+    \begin{equation*}
+        \lambda^2 - (a + d) \lambda + (ad - bc) = 0
+    \end{equation*}
+    
+    Эквивалентно,
+    %
+    \begin{equation*}
+        \lambda^2 - \trace(\boldA) \lambda + \det(\boldA) = 0
+    \end{equation*}
+    
+\end{frame}
+
+
+\begin{frame}
+
+    \frametitle{Существование собственных значений}
+
+    \vspace{2em}
+    Возьмем матрицу $\boldA$ размера $N \times N$ 
+
+    \vspace{0.5em}
+    
+    \Fact Существуют комплексные числа $\lambda_1, \ldots, \lambda_N$, такие что
+    %
+    \begin{equation*}
+        \det(\boldA - \lambda \boldI) = \prod_{n=1}^N (\lambda_n - \lambda)
+    \end{equation*}
+    %
+
+    Каждое такое $\lambda_i$ является собственным значением $\boldA$, потому что
+    %
+    \begin{equation*}
+        \det(\boldA - \lambda_i \boldI) 
+        = \prod_{n=1}^N (\lambda_n - \lambda_i) 
+        = 0
+    \end{equation*}
+    %  
+    Важно: не все собственные значения обязательно различны --- могут быть повторы
+
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \Fact{\eqref{ET-fa:eiprop}} 
+    %
+    Возьмем матрицу $\boldA$ размера $N \times N$ с собственными значениями 
+    $\lambda_1, \ldots, \lambda_N$. Получается
+    %
+    \begin{enumerate}
+            \vspace{-0.6em}
+        \item $\det(\boldA) = \prod_{n=1}^N \lambda_n$
+            \vspace{0.4em}
+        \item $\trace(\boldA) = \sum_{n=1}^N \lambda_n$
+            \vspace{0.4em}
+        \item если $\boldA$ симметрична, то $\lambda_n \in \RR$ для всех $n$
+            \vspace{0.4em}
+        \item если $\boldA$ несингулярна, то $\text{eigenvalues of } \boldA^{-1}
+                = 1/\lambda_1, \ldots, 1/\lambda_N$
+            \vspace{0.4em}
+        \item если $\boldA = \diag(d_1, \ldots, d_N)$, то $\lambda_n = d_n$ для всех $n$
+    \end{enumerate}
+
+    \vspace{0.8em}
+    %
+    Значит матрица $\boldA$ несингулярна $\iff$ все ее собственные значения ненулевые
+    
+\end{frame}
+
+
+\begin{frame}\frametitle{Квадратичные формы}
+
+     \vspace{2em}
+    Возьмем матрицу $\boldA$ размера $N \times N$ 
+    
+    \navy{Квадратичная функция} или \navy{квадратичная форма} в $\RR^N$, связанная с матрицей $\boldA$, --- это отображение $Q$, определяемое как
+    %
+    \begin{equation*}
+        Q(\boldx) := \boldx^\T \boldA \boldx = \sum_{j=1}^N \sum_{i=1}^N a_{ij} x_i x_j
+    \end{equation*}
+    
+    \vspace{.7em}
+    \Eg Пусть $N = 2$ и $\boldA$ --- единичная матрица $\boldI$. Тогда
+    %
+    \begin{equation*}
+        Q(\boldx) = \| \boldx \|^2 = x_1^2 + x_2^2
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \begin{figure}
+   \begin{center}
+    \scalebox{.45}{\includegraphics[trim={7.5em 2em 0 0em}, clip]{qform_pd.pdf}}
+    \caption{\label{f:qform_pd} Квадратичная функция $Q(\boldx) = x_1^2 + x_2^2$ }
+   \end{center}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Внимание:
+    \begin{itemize}
+        \item График для $Q(\boldx) = \| \boldx \|^2 = x_1^2 + x_2^2$ лежит всюду выше нуля
+    \end{itemize}
+    
+    \vspace{.7em}
+    Матрица $\boldA$ с квадратичной формой с указанным выше свойством $Q(\boldx) \geq 0$  называется \emph{положительно определенной}
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    В более общем смысле, симметричная матрица $\boldA$ размера $N \times N$ называется
+    %
+    \begin{itemize}
+        \item \navy{неотрицательно определенной}, если $\boldx^\T \boldA \boldx \geq 0$
+            для всех $\boldx \in \RR^N$, 
+        \item \navy{положительно определенной}, если $\boldx^\T \boldA \boldx > 0$ для всех $\boldx \in \RR^N$ with $\boldx \not= \boldzero$,
+        \item \navy{неположительно определенной}, если $\boldx^\T \boldA \boldx \leq 0$
+            для всех $\boldx \in \RR^N$, и
+        \item \navy{отрицательно определенной}, если $\boldx^\T \boldA \boldx < 0$ для всех $\boldx \in \RR^N$ with $\boldx \not= \boldzero$.
+    \end{itemize}
+    
+    \vspace{.7em}
+    Если $\boldA$ не подходит ни к одной из этих категорий, то $\boldA$ называется \navy{неопределенной}
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \begin{figure}
+   \begin{center}
+    \scalebox{.45}{\includegraphics[trim={5em 2em 0 2em}, clip]{qform_nd.pdf}}
+    \caption{\label{f:qform_nd} Квадратичная функция $Q(\boldx) = -x_1^2 - x_2^2$ }
+   \end{center}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \begin{figure}
+   \begin{center}
+    \scalebox{.4}{\includegraphics[trim={5em 2em 2em 2em}, clip]{qform_indef.pdf}}
+    \caption{\label{f:qform_indef} Квадратичная функция $Q(\boldx) = x_1^2/2 +
+        8 x_1 x_2 + x_2^2/2$ }
+   \end{center}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}  
+
+   \vspace{2em}
+    Когда матрица $\boldA$ диагональная: 
+    %   
+    \begin{equation*}
+        \boldA = \diag(d_1, \ldots, d_N)
+        \quad \text{подразумевает} \quad
+        Q(\boldx) = d_1 x_1^2 + \cdots + d_N x_N^2  
+    \end{equation*}
+    
+    
+    \vspace{.7em}
+    Диагольная матрица положительно определена, тогда и только тогда, когда 
+    все диагональные элементы положительны
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:eigdef}}
+    Пусть $\boldA$ --- некоторая симметричная матрица. Матрица $\boldA$ 
+    %
+    \begin{enumerate}
+        \item положительна определена тогда и только тогда, когда все ее собственные значения положительны
+        \item отрицательно определена тогда и только тогда, когда все ее собственные значения отрицательны
+    \end{enumerate}
+    %
+    ...аналогично для неположительно и неотрицательно определенных
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:ipde}}
+        Если $\boldA$ положительно определена, то $\boldA$ несингулярна, $\det \boldA > 0$
+
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Необходимое (но не достаточное) условие для каждого вида определенности:
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:ipde0}}
+        Если $\boldA$ положительна определена, то
+        каждый элемент $a_{nn}$ на главной диагонали положительный, то же самое для
+        неотрицательной, неположительной и отрицательной.
+        
+\end{frame}
+
+\section{Проекция и разложение}
+
+\begin{frame}\frametitle{Матрицы проекции}
+
+     \vspace{2em}
+    Напомним, что для любого подпространства $\mathbb{R}^{N}$, $S$, соответствующая 
+    проекция $\boldP = \proj S$ является линейным отображением из $\RR^N$ в $\RR^N$
+
+    \vspace{.7em}
+    Вспомним теорему~\ref{ET-t:lmaeq}: существует матрица $\hat \boldP$ размера 
+    $N \times N$, такая что $\boldP \boldx =
+    \hat \boldP \boldx$ для всех $\boldx \in \RR^N$
+    %
+    \begin{itemize}
+        \item с этого момента $\boldP$ также будет означать соответствующую матрицу
+    \end{itemize} 
+    
+    Как выглядит эта матрица?
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{.7em}
+    \Thm {\eqref{ET-t:projon}}
+    Пусть $S$ --- подпространство в $\RR^N$. Если $\boldP = \proj S$, то
+    %
+    \begin{equation}
+        \label{eq:projb}
+        \boldP = \boldB (\boldB^\T\boldB)^{-1} \boldB^\T  
+    \end{equation}
+    %
+    для каждой матрицы $\boldB$, такой что столбцы $\boldB$ формируют базис $S$ 
+    
+    \vspace{.7em}
+    Смотрите упражнение~\ref{ET-ex:projon} для доказательства
+    
+    \begin{itemize}
+        \item  Матрица $\boldM = \boldI -
+                \boldP$ обозначает остаточную проекцию (смотрите 
+                страницу~\pageref{ET-eq:ann0})
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Eg
+    Вспомним пример~\ref{ET-eg:pvones} на странице~\pageref{ET-eg:pvones}
+    
+    Мы выяснили, что проекция $\boldy \in \RR^N$ на $\Span\{\boldone\}$ --- это
+    $\bar y \boldone$
+    
+    Тот же результат с помощью теоремы~\eqref{ET-t:projon}:
+    \begin{itemize}
+        \item Так как $\boldone$ является базисом $\Span\{\boldone\}$:
+            %
+            \begin{equation*}
+                \label{eq:pcz}
+                \boldP = \proj \; \Span\{\boldone\} 
+                \; \implies \;
+                \boldP 
+                = \boldone (\boldone^\T\boldone)^{-1} \boldone^\T  
+                = \frac{1}{N} \boldone \boldone^\T  
+            \end{equation*}
+        %
+        \item Значит, $\boldP \boldy = \bar y \boldone$, как и ожидалось
+        \item Соответствующая остаточная проекция
+        %
+        \begin{equation*}
+            \label{eq:pczm}
+            \boldM_c
+            = \boldI - \frac{1}{N} \boldone \boldone^\T  
+        \end{equation*}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \Fact{\eqref{ET-fa:anox}} 
+    По постановке теоремы~\ref{ET-t:projon}, получается 
+    %
+    \begin{enumerate}
+        \item $\boldM \boldB = \boldzero$
+        \item $\boldP \boldB = \boldB$
+    \end{enumerate}
+    
+    Докажите в качестве упражнения (упр. \ref{ET-ex:anox} в ET)
+    
+    \vspace{1em}
+    Легко заметить, что $\boldM_c$ в предыдущем примере отображает
+    $\boldone$ в $\boldzero$
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Квадратная матрица $\boldA$ является \navy{иденпотентной}, 
+    если $\boldA \boldA = \boldA$ 
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:pmsi}}
+        И $\boldP$, и $\boldM$ симметричны и иденпотентны
+    
+    (Упражнение: проверьте прямыми вычислениями)
+    
+    \vspace{.7em}
+    Интуиция: проецирование
+    на подпространство дважды --- это то же самое, что проецировать один раз -- вспомните 
+    факт~\ref{ET-fa:opt3} на странице~\pageref{ET-fa:opt3}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:trop}}
+    Пусть $S$ является линейным подпространством в $\RR^N$. Если $\boldP = \proj S$ и 
+    $\boldM$ --- остаточная проекция, то
+    %
+    \begin{enumerate}
+        \item $\rank \boldP  = \trace \boldP  = \dim S$ и
+        \item $\rank \boldM  = \trace \boldM  = N - \dim S$
+    \end{enumerate}
+  
+  
+    \Prf
+    \begin{itemize}
+        \item Ранг линейного отображения --- это размерность его диапазона.  Когда $\boldP = \proj S$, Диапазон
+            $\boldP$ равняется $S$
+        \item Чтобы показать, что $\trace \boldP = \dim S$ также соблюдается, используем 
+        факт~\ref{ET-fa:idtrra}--  $\trace\boldP
+                = \dim S$, 
+        \item Это следует из того, что $\trace\boldM = N - \dim S$, потому что
+            %
+            \begin{equation*}
+                \trace\boldM 
+                = \trace(\boldI - \boldP) 
+                = \trace \boldI - \trace\boldP 
+                = N - \dim S
+            \end{equation*}
+
+    \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}\frametitle{Переопределенные системы уравнений}
+    
+    \vspace{2em}
+    Рассмотрим систему уравнений в виде $\boldA \boldx = \boldb$, когда:
+    \begin{itemize}
+        \item Матрица $\boldA$ размера
+        $N \times K$ имеет полный ранг столбцов
+        \item Вектор $\boldx$ имеет размер $K\times1$
+        \item Вектор $\boldb$ имеет размер $N\times 1$ 
+        \item $K\leq N$
+    \end{itemize} 
+    
+    \vspace{1em}
+    Принимая как данность $\boldA$ и $\boldb$, мы ищем $\boldx \in \RR^K$, такой что
+    $\boldA \boldx = \boldb$
+
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Если $K = N$, то система имеет ровно одно решение
+    
+    \vspace{1em}
+    Когда $N > K$, система уравнений считается \navy{переопределенной}:
+    %
+    \begin{itemize}
+        \item количество уравнений $>$ количества неизвестных
+        \item количество ограничений $>$ количества степеней свободы
+    \end{itemize}
+    
+    Возможно, не удастся найти $\boldb$, который удовлетворяет всем $N$ уравнениям
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Вспомним линейное отображение $T \colon
+    \RR^K \to \RR^N$, где $T\boldx = \boldA \boldx$
+    
+    \vspace{1em}
+    Следующие утверждения эквивалентны:
+    %
+    \begin{enumerate}
+        \item существует $\boldx \in \RR^K$, такой что $\boldA \boldx = \boldb$
+        \item вектор $\boldb \in \colspace \boldA$
+        \item вектор $\boldb \in \range T$
+    \end{enumerate}
+    
+     \vspace{.7em}
+    Теорема~\ref{ET-t:lfoc} на странице~\pageref{ET-t:lfoc}: когда $K <
+    N$, функция $T$ не может быть сюръекцией -- возможные $\boldb$ находятся
+    вне диапазона $T$
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Когда $K < N$, случай с $\boldb \in
+    \colspace \boldA$ является ``очень редким``, потму что:
+    %
+    \begin{itemize}
+        \item точка $\boldb$ является произвольной точкой в $\RR^N$
+        \item пространство $ \colspace \boldA$ имеет размерность $K$
+        \item подпространста $\RR^N$ с размерностями $K$ имеют
+        ``нулевую меру Лебега'' -- ``шанс'' того, что $\boldb$ лежит в 
+        этом подпространстве, крошечный
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Стандартный подход: признать, что точного решения может не существовать
+    
+    \vspace{1em}
+    Следует сосредоточиться на поиске $\boldx \in \RR^K$, чтобы $\boldA
+    \boldx$ оказалось настолько близко к $\boldb$, насколько возможно
+    \begin{itemize}
+        \item близки по обычной Евклидовой норме
+    \end{itemize}
+    
+    \vspace{1em}
+    Задача минимизации называется \navy{методом наименьших квадратов}
+    %
+    \begin{equation}
+        \label{eq:mxls}
+        \hat{\boldx} \colon = \argmin_{\boldx \in \RR^K} \| \boldb - \boldA \boldx \|
+    \end{equation}
+    
+\end{frame}
+
+
+\begin{frame}
+
+     \vspace{2em}
+    При условии, что $\boldA$ размера $N \times K$ с $K \leq N$ и 
+    $\boldb$ размера $N \times 1$, 
+    мы можем использовать теорему ортогональной проекции для решения \eqref{eq:mxls}
+    
+    \vspace{.7em}
+    \Thm{\eqref{ET-t:lssol}}
+        Если $\boldA$ имеет полный ранг столбцов, то \eqref{eq:mxls} имеет 
+        единственное решение
+        %
+        \begin{equation}
+            \label{eq:dlse}
+            \hboldx := (\boldA^\T \boldA)^{-1} \boldA^\T \boldb
+        \end{equation}
+        %
+    \end{frame}
+    
+\begin{frame}
+
+    \vspace{2em}
+    \Prf 
+    
+    Пусть:
+    %
+    \begin{itemize}
+        \item $\boldA$ и $\boldb$ будут как в формулировке теоремы
+        \item $\hboldx$ как в \eqref{eq:dlse} и
+        \item $S := \colspace \boldA$
+    \end{itemize}
+    %
+    При условии полного ранга столбцов, столбцы $\boldA$ формируют базис для
+    $S$. Применяем теорему~\ref{ET-t:projon}, ортогональная проекция $\boldb$
+    на $S$:
+    %
+    \begin{equation}
+        \label{eq:ibprojon}
+        \boldP\boldb 
+        := \boldA (\boldA^\T \boldA)^{-1} \boldA^\T \boldb  
+         = \boldA \hboldx
+    \end{equation}
+    
+   Поскольку теорема об ортогональной проекции дает единственный минимизатор в терминах 
+   ближайшей точки в $S$ к $\boldb$,
+    %
+    \begin{equation}
+        \label{eq:sfy}
+        \| \boldb - \boldA\hboldx \| < \| \boldb - \boldy\|
+        \quad \text{для всех } \boldy \in S, \; \boldy \not= \boldA \hboldx
+    \end{equation}
+
+\end{frame}
+    
+\begin{frame}
+    
+    \vspace{2em}
+    \Prf (прод.) Возьмем любой $\boldx \in \RR^K$, такой что $\boldx \not= \hboldx$
+    
+    Получается $\boldA \boldx \in S$
+    
+    К тому же, так как $\boldx \not= \hboldx$ и $\boldA$ имеют полный ранг столбцов, 
+    должно быть $\boldA \boldx \not= \boldA \hboldx$
+    (упр.~\ref{ET-ex:ui})
+    
+     \vspace{.7em}
+    Значит
+    %
+    \begin{equation*}
+        \| \boldb - \boldA\hboldx \| < \| \boldb - \boldA \boldx\|
+        \quad \text{для всех } \boldx \in \RR^K, \; \boldx \not= \hboldx
+    \end{equation*}
+    %
+    Другими словами, $\hboldx$ является единственным решением \eqref{eq:mxls}
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    В \eqref{eq:dlse} матрица $(\boldA^\T\boldA)^{-1} \boldA^\T$ 
+    называется \navy{псевдообратной} матрицы $\boldA$ 
+    
+    \vspace{1em}
+    Если $K =
+    N$, то
+    решение методом наименьших квадратов $\hboldx$ в \eqref{eq:dlse} сокращается до:
+    %
+    \begin{equation*}
+        \boldx = \boldA^{-1}\boldb
+    \end{equation*}
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Что произойдет, если столбцы $ \ boldA $ не будут
+    линейно независимыми? 
+    
+    \begin{itemize}
+        \item   множество $\colspace \boldA$ все еще линейное
+        подпространство и теорема ортогональной проекции все еще дает нам ближайшую
+        точку $\boldP \boldb$ к $\boldb$ в $\colspace \boldA$
+        \item   так как $\boldP
+        \boldb \in \colspace \boldA$, все еще существует вектор $\hboldx$, такой что
+        $\boldP \boldb = \boldA \hboldx$
+        \item   но таких векторов существует бесконечное множество
+    \end{itemize}
+    
+    Смотрите упражнение~\ref{ET-ex:lsiosol}
+    
+\end{frame}
+
+
+\section{Диагонализация и спектральная теория} 
+
+\begin{frame}\frametitle{QR-разложение}
+
+     \vspace{2em}
+    \navy{QR-разложение} данной матрицы $\boldA$ --- это произведение вида$\boldQ \boldR$
+    \begin{itemize}
+        \item первая матрица имеет ортонормированные столбцы и 
+        \item вторая является верхней треугольной
+    \end{itemize}
+    
+    \vspace{1em}
+    Приложения включают задачи наименьших квадратов и вычисление собственных значений
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \Thm{\eqref{ET-t:qr}}
+    Если матрица $\boldA$ размера $N \times K$ имеет полный ранг столбцов, 
+    то существует факторизация $\boldA = \boldQ \boldR$, где
+    %
+    \begin{enumerate}
+        \item $\boldR$ размера $K \times K$ является верхней треугольной и несингулярной, и 
+        \item $\boldQ$ размера $N \times K$ имеет ортонормированные столбцы
+    \end{enumerate}
+    %
+    Смотрите страницу~\pageref{ET-t:qr} в ET для доказательства
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    Возьмем разложение $\boldA = \boldQ \boldR$, рещение методом наименьших квадратов
+    $\hboldx$, определенное в \eqref{eq:dlse}, может также записываться как:
+    $$\hboldx =
+    \boldR^{-1} \boldQ^\T \boldb$$
+    
+    Смотрите упр.~\ref{ET-ex:qrlsq}
+    
+    \vspace{.7em}
+    Умножение на $\boldR$:
+    $$\boldR \hboldx = \boldQ^\T \boldb$$
+    
+\end{frame}
+
+\begin{frame}\frametitle{Диагонализация и спектральная теория}
+
+     \vspace{2em}
+    Если $f \colon A \to A$ и $g \colon B \to B$, то
+    говорят, что $g$ \navy{топологически сопряжен} с $f$ везде, где существует
+    непрерывная биекция $\tau \colon B \to A$, такая что $$f = \tau \circ g \circ
+    \tau^{-1}$$
+    
+    \vspace{.7em}
+    Может быть полезно, если $g$ проще $f$
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Говорят, что квадратная матрица $\boldA$ \navy{подобна} матрице $\boldB$, если 
+    существует обратимая матрица $\boldP$, такая что $\boldA = \boldP \boldB \boldP^{-1}$
+
+    \begin{figure}
+   \begin{center}
+    \input{figs_code/tikzfigs/diagonalize.tex}
+    \caption{\label{f:diagonalize} $\boldA$ подобна $\boldB$}
+   \end{center}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
+   
+    \vspace{2em}
+    Если $\boldA$ подобна диагональной матрице, то $\boldA$ 
+    называется \navy{диагонализируемой}
+    
+    \vspace{.7em}
+    Нас интересует подобие простым матрицам, диагональные матрицы --- самый простой вид 
+    
+\end{frame}
+
+\begin{frame}
+
+     \vspace{2em}
+    \Fact{\eqref{ET-fa:powsm}}
+        Если $\boldA$ подобна $\boldB$, то $\boldA^t$ подобна
+        $\boldB^t$ для всех $t \in \NN$
+    
+    \vspace{.7em}
+    \Eg
+    Мы хотим вычислить $\boldA^t$ для некоторых данных $t \in \NN$ 
+    
+    Если $\boldA = \boldP \boldLambda \boldP^{-1}$ для некоторых
+    $\boldLambda = \diag(\lambda_1, \ldots, \lambda_N)$, то по 
+    факту~\ref{ET-fa:powsm} и факту~\ref{ET-fa:powdm}, получается
+    %
+        $$\boldA^t = \boldP \diag(\lambda_1^t, \ldots, \lambda_N^t)
+        \boldP^{-1}$$
+    
+\end{frame}
+
+\begin{frame}\frametitle{Диагонализация и собственные значения}
+
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:diagee}}
+    Если $\boldA = \boldP \boldLambda \boldP^{-1}$ для некоторых $\boldLambda =
+        \diag(\lambda_1, \ldots, \lambda_N)$, то $(\col_n \boldP,
+            \lambda_n)$ является собственной парой $\boldA$ для любого $n$
+            
+    \vspace{.7em}    
+    
+    \Prf
+    Заметим, что $\boldA = \boldP \boldLambda \boldP^{-1}$ значит, 
+    что $\boldA \boldP = \boldP \boldLambda$
+    
+    Equating the $n$th column on each side gives 
+    Рассмотрим столбец $n$ с каждой стороны:
+    %
+        $$\boldA \boldp_n = \lambda_n
+        \boldp_n$$
+    %
+    Где $\boldp_n := \col_n \boldP$
+    
+    Заметим, что $\boldp_n$ --- ненулевой вектор,
+    так как $\boldP$ обратима
+        
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Но когда $\boldA$ диагонализируема?
+    
+    \vspace{.7em}
+    \Fact (3.3.7)
+    Матрица $\boldA$ размера $N \times N$ диагонализируема тогда и только тогда, когда
+    она имеет $N$ линейно независимых собственных векторов
+
+\end{frame}
+
+
+\begin{frame}
+
+     \vspace{2em}
+    В некоторых случаях, мы можем получить еще более простое разложение матрицы, если 
+    матрица $\boldP$ имеет ортогональные столбцы
+
+    Такие матрицы называются \navy{ортогональными матрицами}
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:orthmat}}
+    Если $\boldQ$ и $\boldP$ --- ортогональные матрицы размера $N \times N$, то 
+    %
+    \begin{enumerate}
+        \item $\boldQ^\T$ ортогональна и $\boldQ^{-1} = \boldQ^\T$,
+        \item $\boldQ \boldP$ ортогонально, и
+        \item $\det \boldQ \in \{-1, 1\}$.
+    \end{enumerate}
+    
+\end{frame}
+    
+\begin{frame}
+
+    \vspace{2em}
+    Если $\boldA = \boldQ \boldLambda \boldQ^{-1}$ и $\boldQ$ имеют ортогональные столбцы,
+    то $$\boldA = \boldQ \boldLambda \boldQ^\T$$
+    
+    Ясно, что $\boldA$ должна быть симметричной. Следующая теорема показывает, что симметрия $\boldA$ также достаточна
+    
+    \vspace{.7em}
+    \Thm{\eqref{ET-t:dismat}}
+    Если $\boldA$ симметрична, то $\boldA$ может быть
+    диагонализована как $\boldA = \boldQ \boldLambda \boldQ^\T$, где 
+    $\boldQ$ --- ортогональная матрица и $\boldLambda$ ---
+    диагональная матрица, сформированная из собственных значений $\boldA$
+    
+\end{frame}
+
+\begin{frame}
+
+   \vspace{2em}
+
+    Вышеупомянутая теорема была версией \navy{теоремы о спектральном разложении}
+
+    $\boldQ \boldLambda \boldQ^\T$ называется \navy{симметричным разложением на собственные 
+    	значения} матрицы $\boldA$\ -- воздействие $\boldA$ на вектор $\boldx$ 
+    размера $N \times 1$:
+    %
+    \begin{equation*}
+        \boldA\boldx = \sum_{n=1}^N \lambda_n (\boldu_n^\T \boldx) \boldu_n
+    \end{equation*}
+    %
+    где $\lambda_n$ является $n$-ым собственным значением $\boldA$ и $\boldu_n = \col_n \boldQ$
+    
+    \vspace{.7em}
+    Сравните с $\boldx = \sum_{n=1}^N (\boldu_n^\T \boldx) \boldu_n$
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:sqrtsnd}}
+    Если $\boldA$ неотрицательно определена, то $\sqrt{\boldA}$
+    существует и равняется $\boldQ \sqrt{\boldLambda} \boldQ^\T$.
+    Матрица $\sqrt{\boldLambda}$ равняется $\diag(\sqrt{\lambda_1},
+    \ldots, \sqrt{\lambda_N})$
+    
+    \vspace{.7em}
+    \Fact{\eqref{ET-fa:cholesky}}
+    Если $\boldA$ положительно определена, то существует несингулярная, верхняя
+    треугольная матрица $\boldR$, такая что $\boldA = \boldR^\T \boldR$
+    
+    Такое разложение называется \navy{разложением Холецкого}
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Prf (Разложение Холецкого)
+    Мы можем написать:
+    %
+        \begin{equation*}
+            \boldA 
+            = \boldQ \boldLambda \boldQ^\T
+            = \boldQ \sqrt{\boldLambda} \sqrt{ \boldLambda} \boldQ^\T
+            = (\sqrt{ \boldLambda} \boldQ^\T)^\T \sqrt{ \boldLambda} \boldQ^\T
+        \end{equation*}
+    %
+    Затем применим QR-разложение к $\sqrt{ \boldLambda} \boldQ^\T$:
+    %
+        $$\sqrt{ \boldLambda} \boldQ^\T = \tilde \boldQ \boldR$$
+    %
+    где $\boldR$ несингулярная и верхняя треугольная, и $\tilde \boldQ$ имеет
+    ортонормированные столбцы
+    
+    \vspace{.7em}
+    Так как столбцы $\tilde \boldQ$ ортонормированные,
+    %
+        \begin{equation*}
+        \boldA 
+        = (\tilde \boldQ \boldR)^\T \tilde \boldQ \boldR
+        =  \boldR^\T \tilde \boldQ^\T \tilde \boldQ \boldR
+        =  \boldR^\T \boldR
+        \end{equation*}
+    
+\end{frame}
+
+
+\begin{frame}
+
+    \vspace{2em}
+    \frametitle{Нормы и непрерывность}
+    
+    Возьмем векторную последовательность $\{\boldx_n\}$ в $\RR^K$ и любую точку 
+    $\boldx \in \RR^K$. Говорят, что $\{\boldx_n\}$ \navy{сходится} к $\boldx$ и 
+    записывается
+    \navy{$\boldx_n \to \boldx$}, если для любых $\epsilon > 0$, существует $N
+    \in \NN$, такое что $\|\boldx_n - \boldx\| < \epsilon$ при $n \geq N$
+    
+    \vspace{.7em}
+    Эквивалентно, последовательность действительных чисел $z_n := \|\boldx_n - \boldx\|$
+    сходится к нулю ы $\RR$ при $n \to \infty$
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    \Fact (3.3.11)
+    Имеют место следующие результаты:
+    %
+    \begin{enumerate}
+        \item если $\boldx_n \to \boldx$ и $\boldy_n \to \boldy$, то $\boldx_n +
+            \boldy_n \to \boldx +  \boldy$.
+        \item если $\boldx_n \to \boldx$ и $\alpha \in \RR$, то $\alpha \boldx_n 
+            \to \alpha \boldx$.
+        \item $\boldx_n \to \boldx$ тогда и только тогда, когда $\bolda^\T \boldx_n \to
+            \bolda^\T \boldx$ для всех $\bolda \in \RR^K$.
+    \end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    Мы хотим распространить понятие сходимости на матрицы
+    
+    \vspace{.7em}
+    \navy{Норма матрицы} $\boldA$ размера $N \times K$:
+    %
+    \begin{equation}
+    \label{eq:mn}
+    \| \boldA \| :=
+    \max \left\{ 
+        \| \boldA \boldx \| \,: \, 
+        \boldx \in \RR^K, \; \| \boldx \| = 1
+        \right\}
+    \end{equation}
+
+    \vspace{.7em}
+    Значение нормы матрицы в общем случае найти непросто
+    
+    Однако, матричная норма ведет себя как векторная норма
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact (3.3.12)
+    Для любых согласующихся матриц $\boldA$ и $\boldB$, матричная норма удовлетворяет
+    %
+    \begin{enumerate}
+        \item $\| \boldA \| \geq 0$ и $\| \boldA \| = 0$ тогда и только тогда, когда 
+        все записи $\boldA$ нулевые,
+        \item $\| \alpha \boldA \| = |\alpha| \| \boldA \|$ для любых скаляров
+            $\alpha$,
+        \item $\| \boldA + \boldB \| \leq \| \boldA \| + \| \boldB \|$, и
+        \item $\| \boldA \boldB \| \leq \| \boldA \| \| \boldB \|$.
+    \end{enumerate}
+    
+    
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact{\eqref{ET-fa:mnbd}}
+    Для любых матриц $\boldA$ размера $J \times K$ с элементами $a_{jk}$, выходит
+    %
+    \begin{equation*}
+        \| \boldA \| \leq \sqrt{JK} \max_{jk} |a_{jk}|
+    \end{equation*}
+    
+    \vspace{1em}
+    если каждый элекмент
+    $\boldA$ близок к нулю, то $\| \boldA \|$ тоже близка к нулю
+
+\end{frame}
+
+\begin{frame}\frametitle{Ряд Неймана}
+
+    \vspace{2em}
+    В дальнейшем мы изучаем динамические системы вида
+    %
+        $$\boldx_{t+1} = \boldA \boldx_t + \boldb$$
+    %
+    
+    \vspace{.7em}
+    Существует ли ``стационарный`` вектор
+  	$\boldx \in \RR^N$ в том смысле, что $\boldx_t = \boldx$ значит, что 
+  	$\boldx_{t+1} = \boldx$?
+  
+    Мы ищем $\boldx \in \RR^N$, являющийся решением системы уравнений
+    %
+    \begin{equation}
+        \label{eq:lpfde}
+        \boldx = \boldA \boldx + \boldb 
+        \qquad (\boldA \text{ is } N \times N \text{ и } \boldb \text{ is } N
+        \times 1)
+    \end{equation}
+    
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Рассмотрим случай со скалярами $x = a x + b$
+    
+    \vspace{.7em}
+    Если $|a| < 1$, то существует единственное решение
+    %
+    \begin{equation*}
+        \bar x 
+        = \frac{b}{1-a} 
+        = b \sum_{k=0}^{\infty} a^k 
+    \end{equation*}
+ 
+    \vspace{.7em}
+    Лемма о рядах Неймана помогает обобщить это до $\mathbb{R}^{N}$
+    
+    \vspace{1em}
+    \Thm{\eqref{ET-t:nms}}
+    Если матрица $\boldA$ квадратная и $\| \boldA^j \| < 1$
+    для некоторых $j \in \NN$, то $\boldI - \boldA$ обратима, и
+    %
+    \begin{equation*}
+        \label{eq:nmse}
+        (\boldI - \boldA)^{-1} = \sum_{i=0}^{\infty} \boldA^i 
+    \end{equation*}
+    
+\end{frame}
+ 
+\begin{frame}
+
+    \vspace{.7em}
+    Когда выполняется условие леммы о рядах Неймана, \eqref{eq:lpfde}
+    имеет единственное решение
+    %
+    \begin{equation*}
+        \bar \boldx 
+        = (\boldI - \boldA)^{-1} \boldb 
+        = \sum_{i=0}^{\infty} \boldA^i  \boldb 
+    \end{equation*}
+    
+    Чтобы проверить это решение, используем \navy{спектральный радиус} $\boldA$:
+    %
+    \begin{equation*}
+        \label{eq:srmn}
+        \rho(\boldA) := \max \setntn{ |\lambda| }
+        { \lambda \text{ является собственным значением } \boldA}
+    \end{equation*}
+    
+    \vspace{1em}
+    $|\lambda|$ --- это \navy{модуль} возможно комплексного числа $\lambda$
+    
+
+\end{frame}
+
+\begin{frame}
+
+    \vspace{2em}
+    \Fact
+    Если $\rho(\boldA) < 1$, то $\| \boldA^j \| < 1$ для некоторых $j \in \NN$
+    
+    \vspace{.7em}
+    Почему достаточно $\rho(\boldA) < 1$?
+    
+    Нам нужно
+    $\sum_{i=0}^t \boldA^i (\boldI - \boldA)$ было близко к $\boldI$ для
+    больших $t$
+    
+    Получается:
+    \begin{equation*}
+        \sum_{i=0}^t \boldA^i (\boldI - \boldA)
+        =
+        \sum_{i=0}^t \boldA^i - \sum_{i=0}^t \boldA^{i+1}
+        =
+        \boldI - \boldA^{t+1}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}
+    
+    \vspace{2em}
+    Упростим до случая, где $\boldA$ диагонализируется:
+    %
+        $$\boldA = \boldP \boldLambda \boldP^{-1}$$
+    %
+    где $\boldLambda$ --- диагональная матрица,
+    содержащая собственные значения $\lambda_1, \ldots, \lambda_N$ матрицы $\boldA$
+    на главной диагонали. 
+
+    \vspace{.7em}
+    Теперь используем факт~\ref{ET-fa:powsm},
+    %
+    \begin{equation*}
+        \boldA^t
+        = \boldP
+        \left(
+        \begin{matrix}
+            \lambda_1^t & 0 & \cdots & 0 \\
+            0 & \lambda_2^t & \cdots & 0 \\
+            \vdots & \vdots &  & \vdots \\
+            0 & 0 & \cdots & \lambda_N^t \\
+        \end{matrix}
+        \right)
+        \boldP^{-1}
+    \end{equation*}
+    %
+    Если $\rho(\boldA) < 1$, то $|\lambda_n| < 1$ для всех $n$, и значит
+    $\lambda_n^t \to 0$ при $t \to \infty$. Из этого следует, что $\boldA^t \to
+    \boldzero$ 
+    
+\end{frame}
+
+
+\end{document}
+
